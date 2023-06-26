@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button musicButton;
     private Button videoButton;
+    private Button mapButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         musicButton = findViewById(R.id.musicButton);
         videoButton = findViewById(R.id.videoButton);
+        mapButton = findViewById(R.id.mapButton);
 
         musicButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openVideoFragment();
+            }
+
+        });
+
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMapFragment();
             }
         });
     }
@@ -47,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         openFragment(videoFragment);
     }
 
+    private void openMapFragment() {
+        MapFragment mapFragment = new MapFragment();
+        openFragment(mapFragment);
+    }
+
     private void openFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -54,4 +69,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 }
